@@ -9,6 +9,7 @@ arguments. For example, "python main.py --filter-scales 2 5 --K 50"
 '''
 
 import argparse
+import numpy as np
 
 
 def get_opts():
@@ -25,15 +26,15 @@ def get_opts():
 
     # Visual words (requires tuning)
     parser.add_argument('--filter-scales', nargs='+', type=float,
-                        default=[1, 2, 4],
+                        default=[1, 2],
                         help='a list of scales for all the filters')
-    parser.add_argument('--K', type=int, default=10,
+    parser.add_argument('--K', type=int, default=50,
                         help='# of words')
     parser.add_argument('--alpha', type=int, default=25,
                         help='Using only a subset of alpha pixels in each image')
 
     # Recognition system (requires tuning)
-    parser.add_argument('--L', type=int, default=1,
+    parser.add_argument('--L', type=int, default=3,
                         help='# of layers in spatial pyramid matching (SPM)')
 
     # Additional options (add your own hyperparameters here)

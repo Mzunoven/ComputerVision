@@ -25,7 +25,8 @@ def extract_filter_responses(opts, img):
     # ----- TODO -----
     # check input image channels
     if len(img.shape) < 3:
-        img = np.matlib.repmat(img, 3, 1)
+        img = np.tile(img[:, :, np.newaxis], (1, 1, 3))
+    # print(img.shape)
     if img.shape[-1] > 3:
         img = img[:, :, 0:3]
 
