@@ -30,9 +30,9 @@ def LucasKanade(It, It1, rect, threshold, num_iters, p0=np.zeros(2)):
         0, imH1, num=imH1, endpoint=False), np.linspace(0, imW1, num=imW1, endpoint=False), It1)
 
     change = 1
-    counter = 1
+    count = 1
     x, y = np.mgrid[x1:x2+1:wid*1j, y1:y2+1:hei*1j]
-    while (change > threshold) and (counter < num_iters):
+    while (change > threshold) and (count < num_iters):
         dpx = spline1.ev(y+p[1], x+p[0], dy=1).flatten()
         dpy = spline1.ev(y+p[1], x+p[0], dx=1).flatten()
         It1_p = spline1.ev(y+p[1], x+p[0]).flatten()
@@ -48,6 +48,6 @@ def LucasKanade(It, It1, rect, threshold, num_iters, p0=np.zeros(2)):
         change = np.linalg.norm(dp)
         p = (p + dp.T).ravel()
 
-        counter += 1
+        count += 1
 
     return p

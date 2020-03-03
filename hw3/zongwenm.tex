@@ -106,163 +106,107 @@ Therefore, we have:
 
 To guarantee a unique solution for $\Delta\mathbf{p}$, $\mathbf{A^TA}$ needs to be full rank, in other words, $det\left(\mathbf{A^TA} \right) \ne 0$
 
-\paragraph{2. How many point pairs are required to solve $h$?}~{}
+\paragraph{Q1.3}~{}
 
-$4$ point pairs are required.
+Result pictures are shown below:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq1.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq100.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq200.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq300.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq400.png}}
+\caption{Car Sequence with One Single Template}
+\end{figure}
 
-\paragraph{3. Derive $A_i$}~{}
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq1.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq20.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq40.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq60.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq80.png}}
+\caption{Girl Sequence with One Single Template}
+\end{figure}
 
-In part $1$, we acquired equations:
-\begin{align}
-	x_1 = h_{11}x_2 + h_{12}y_2 + h_{13} \\
-	y_1 = h_{21}x_2 + h_{22}y_2 + h_{23} \\
-	1 = h_{31}x_2 + h_{32}y_2 + h_{33}
-\end{align}
+\paragraph{Q1.4}~{}
 
-Since $\bold{A_ih = 0}$, we could derive $\bold{A_i}$ as:
-\begin{equation}
-	A_i = 
-	\begin{bmatrix}
-		-x_2 & -y_2 & -1 & 0 & 0 & 0 & x_1x_2 & x_1y_2 & x_1 \\
-		0 & 0 & 0 & -x_2 & -y_2 & -1 & y_1x_2 & y_1y_2 & y_1
-	\end{bmatrix}
-\end{equation}
+Result pictures are shown below, in which red rectangles are created by baseline tracker with correction and blue rectangles are those created in $\bold{Q1.3}$:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq_wrct1.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq_wrct100.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq_wrct200.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq_wrct300.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/carseq_wrct400.png}}
+\caption{Car Sequence with Template Correction}
+\end{figure}
 
-\paragraph{4.}~{}
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq_wrct1.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq_wrct20.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq_wrct40.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq_wrct60.png}}
+\subfigure[]{
+\includegraphics[width=0.15\textwidth]{results/girlseq_wrct80.png}}
+\caption{Girl Sequence with Template Correction}
+\end{figure}
 
-This could be solved in the least squares fashion, by finding the eigenvector of $\bold{A}$, corresponding to the smallest eigenvalue of $\bold{A}$.
+\section{Affine Motion Subtraction}
 
-Taking the SVD of $\bold{A}$:
-\begin{equation}
-	h = argmin\left(\left(h^{T}V\right)\Sigma^{2}\left(V^{T}h\right)\right)
-\end{equation}
+\paragraph{Q2.3}~{}
 
-Therefore, $\bold{A}$ should be full rank, and $\bold{h}$ is the last column of $\bold{V}$.
+Result images are shown below:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/antseq30.png}}
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/antseq60.png}}
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/antseq90.png}}
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/antseq120.png}}
+\caption{Motion Detection of Ant Sequence}
+\end{figure}
 
-\subsection{Homography Under Rotation}
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/aerialseq30.png}}
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/aerialseq60.png}}
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/aerialseq90.png}}
+\subfigure[]{
+\includegraphics[width=0.2\textwidth]{results/aerialseq120.png}}
+\caption{Motion Detection of Aerial Sequence}
+\end{figure}
 
-Since there's no translation between world frame and two cameras, and there's no rotation for the first camera, we could find a inverse projection matrix for camera $1$, $M_1^{-1} = \left[ \begin{smallmatrix} I & 0  \end{smallmatrix} \right]^{T}K_1^{-1}$, and we could acquire $\bold{H}$ by $\boldsymbol{H} = M_1^{-1}K_2\left[ \begin{smallmatrix} R & 0  \end{smallmatrix} \right]$. Therefore, there exists a homography $\bold{H}$ between $\bold{x_1}$ and $\bold{x_2}$.
+\section{Efficient Tracking}
 
-\subsection{Understanding Homographies Under Rotation}
+\paragraph{Q3.1}~{}
 
-Since $\bold{K}$ is constant, so the matrix $\bold{H^2}$ is corresponding to $\bold{R^2}$. For instance, if the camera is rotating around $\bold{z}$ axis:
-\begin{align}
-	\bold{R} = 
-	\begin{bmatrix}
-		\cos{\theta} & -\sin{\theta} & 0 \\
-		\sin{\theta} & \cos{\theta} & 0 \\
-		0 & 0 & 1
-	\end{bmatrix} \\
-	\bold{R^2} = 
-	\begin{bmatrix}
-		\cos{2\theta} & -\sin{2\theta} & 0 \\
-		\sin{2\theta} & \cos{2\theta} & 0 \\
-		0 & 0 & 1
-	\end{bmatrix}
-\end{align}
-
-Therefore, $\bold{H^2}$ is corresponding to $2\theta$.
-
-\subsection{Limitations of the Planar Homography}
-
-The motion of camera may not be a pure rotation around its center or the points are not on a plane, thus planar homography is insufficient.
-
-\subsection{Behavior of Lines Under Perspective Projections}
-
-Point in world frame $\left[ \begin{smallmatrix} x & y & z \end{smallmatrix} \right]^{T}$ to point in projection $\left[ \begin{smallmatrix} x^\prime & y^\prime \end{smallmatrix} \right]^{T}$. Since for a line function in $3D$: 
-\begin{equation}
-	l\begin{bmatrix}
-		x \\ y \\ z
-	\end{bmatrix} = 0
-\end{equation}
-
-In 2d coordinate, we have:
-\begin{equation}
-	l\begin{bmatrix}
-		\frac{x}{z} \\ \frac{y}{z} \\ 1
-	\end{bmatrix} = 0
-\end{equation}
-
-Thus let $\frac{x}{z} = x^\prime$ and $\frac{y}{z} = y^\prime$, we have:
-\begin{equation}
-	l\begin{bmatrix}
-		x^\prime \\ y^\prime \\ 1
-	\end{bmatrix} = 0
-\end{equation}
-
-Therefore, the projection $\bold{P}$ preserve lines.
-
-\section{Computing Planar Homographies}
-\setcounter{subsection}{0}
-\subsection{Feature Detection and Matching}
-
-\setcounter{subsubsection}{0}
-\subsubsection{FAST Detector}
-
-FAST detector works by selecting pixel rather than using sliding window, and FAST detector would compare those pixels around selected pixel, and if there is enough pixels brighter or darker than selected pixel, this pixel is considered as a corner. Compared with Harris detector, FAST do not need to calculate $\lambda$ for whole sliding window, which would save great energy and time in computation.
-
-\subsubsection{BRIEF Descriptor}
-
-BRIEF would create a patch around selected point and implement Gaussian Filter to this region. Then it will randomly select $\bold{N}$ point pairs and compare each pair to acquire a binary code in length $\bold{N}$ as descriptor of this patch.
-
-\subsubsection{Matching Methods}
-
-When BRIEF descriptor acquired binary codes for two interest points, Hamming distance is calculating the XOR between two descriptors. Hamming distance benefits since it would be much easier for CPU to perform XOR and bit count operations.
-
-\subsubsection{Feature Matching}
-
-Result for default parameters is shown below:
-
-
-
-\subsubsection{Feature Matching Parameter Tuning}
-Firstly, I used fixed $sigma = 0.15$ and tuning $ratio$, the results are shown below:
-
-
-Then using fixed $ration = 0.7$, tuning sigma:
-
-
-As observed in the results. with the increase of ratio, matched points number increased drastically and when the ratio dropped, there would be fewer matched points, this is due to fewer point pairs would be considered matched with the drop of ratio. And increasing sigma would decrease matched points. That is, sigma is the threshold for corner detection and increase sigma would lead to less detected corner so that there would be fewer interest points for descriptor.
-
-\subsubsection{BRIEF and Rotations}
-
-In this case, with BRIEF feature descriptor ratio $ratio = 0.7$, I visualized match result for rotation angle $60, 180, 270$, images are shown below:
-
-
-The histogram is shown below:
-
-
-As was observed in results, the number of matches dropped drastically as the rotation angle increased. This is because BRIEF descriptors construct a bitset descriptor for each patch by comparing randomly chosen pixels location. When rotating the image, the keypoints are bound to give different descriptors for the same patch, and the comparison would occur at different pixel intensities.
-
-\setcounter{subsection}{1}
-\subsection{Homography Computation, Normalization and RANSAC}
-
-\setcounter{subsubsection}{3}
-\subsubsection{Putting it together}
-
-Warped image is shown below:
-
-Noticed that the hp\_cover image was placed in the right place but with a wrong size. The way to solve this problem could be increase iteration number to find a better homography, resize hp\_cover to a more precise shape, and decrease tolerance.
-
-\subsubsection{RANSAC Parameter Tuning}
-
-Since increase iteration number could increase the possibility to find optimized homography, so first I used default tolerance $2$ and changed numbers of iteration, the composited image became:
-
-
-Noticed that as the iteration number increased, the warping image fitted slightly better because with more iteration we could acquire a better homography. So choose iteration number $1500$, the next step is to tune tolerance. Results are shown below:
-
-
-As observed in results, when tolerance increase, the template would have a better fit of image, since for tolerance larger than $3$ the results do not differ much, I would choose a tolerance as $3$.
-
-\section{Creating your Augmented Reality Application}
-\setcounter{subsection}{0}
-\subsection{Incorporating Video}
-
-\section{Extra Credit}
-\setcounter{subsection}{1}
-\subsection{Create a Simple Paranoma}
-
-Created panaroma is shown below:
-
+Because some time-consuming tasks like Hessian, steepest descent images could be pre-computed, so we do not need to compute it repeatedly in optimization gradient descent iterations.
 
 \end{document}
