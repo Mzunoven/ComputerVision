@@ -172,7 +172,11 @@ def epipolarMatchGUI(I1, I2, F):
 
     while True:
         plt.sca(ax1)
-        x, y = plt.ginput(1, mouse_stop=2)[0]
+        temp = plt.ginput(1, mouse_stop=2)
+        if not temp:
+            break
+        else:
+            x,y = temp[0]
 
         xc = int(x)
         yc = int(y)

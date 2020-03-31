@@ -39,6 +39,7 @@ def LucasKanadeAffine(It, It1, threshold, num_iters):
         x_res = (np.where(xp >= imW0) or np.where(xp < 0))
         y_res = (np.where(yp >= imH0) or np.where(yp < 0))
 
+        # Finding common area
         if np.shape(x_res)[1] == 0 and np.shape(y_res)[1] == 0:
             res = []
         elif np.shape(x_res)[1] != 0 and np.shape(y_res)[1] == 0:
