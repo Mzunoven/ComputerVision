@@ -529,25 +529,56 @@ if __name__ == "__main__":
 
     # 6.1
 
-    time_0 = np.load('../data/q6/time'+str(0)+'.npz')
-    pts1 = time_0['pts1']  # Nx3 matrix
-    pts2 = time_0['pts2']  # Nx3 matrix
-    pts3 = time_0['pts3']  # Nx3 matrix
-    M1_0 = time_0['M1']
-    M2_0 = time_0['M2']
-    M3_0 = time_0['M3']
-    K1_0 = time_0['K1']
-    K2_0 = time_0['K2']
-    K3_0 = time_0['K3']
-    C1_0 = np.dot(K1_0, M1_0)
-    C2_0 = np.dot(K1_0, M2_0)
-    C3_0 = np.dot(K1_0, M3_0)
-    Thres = 200
-    P_mv, err_mv = MultiviewReconstruction(
-        C1_0, pts1, C2_0, pts2, C3_0, pts3, Thres)
-    M2_opt, P2_opt = bundleAdjustment(
-        K2_0, M2_0, pts2[:, :2], K3_0, M3_0, pts3[:, :2], P_mv)
-    helper.plot_3d_keypoint(P2_opt)
-    np.savez('q6_1.npz', M=M2_opt, w=P2_opt)
+    # time_0 = np.load('../data/q6/time'+str(0)+'.npz')
+    # pts1 = time_0['pts1']  # Nx3 matrix
+    # pts2 = time_0['pts2']  # Nx3 matrix
+    # pts3 = time_0['pts3']  # Nx3 matrix
+    # M1_0 = time_0['M1']
+    # M2_0 = time_0['M2']
+    # M3_0 = time_0['M3']
+    # K1_0 = time_0['K1']
+    # K2_0 = time_0['K2']
+    # K3_0 = time_0['K3']
+
+    # 6.2
+    connections_3d = [[0, 1], [1, 3], [2, 3], [2, 0], [4, 5], [6, 7], [8, 9], [9, 11], [
+        10, 11], [10, 8], [0, 4], [4, 8], [1, 5], [5, 9], [2, 6], [6, 10], [3, 7], [7, 11]]
+    colors = ['blue', 'blue', 'blue', 'blue', 'red', 'magenta', 'green', 'green', 'green',
+              'green', 'red', 'red', 'red', 'red', 'magenta', 'magenta', 'magenta', 'magenta']
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    for i in range(10):
+        time = np.load('../data/q6/time'+str(i)+'.npz')
+        pts1 = time['pts1']
+        pts2 = time['pts2']
+        pts3 = time['pts3']
+        M1_0 = time['M1']
+        M2_0 = time['M2']
+        M3_0 = time['M3']
+        K1_0 = time['K1']
+        K2_0 = time['K2']
+        K3_0 = time['K3']
+        C1_0 = np.dot(K1_0, M1_0)
+        C2_0 = np.dot(K1_0, M2_0)
+        C3_0 = np.dot(K1_0, M3_0)
+        Thres = 200
+        P_mv, err_mv = MultiviewReconstruction(
+            C1_0, pts1, C2_0, pts2, C3_0, pts3, Thres)
+        M2_opt, pts_3d = bundleAdjustment(
+            K2_0, M2_0, pts2[:, :2], K3_0, M3_0, pts3[:, :2], P_mv)
+        num_points = pts_3d.shape[0]
+        for j in range(len(connections_3d)):
+            index0, index1 = connections_3d[j]
+            xline = [pts_3d[index0, 0], pts_3d[index1, 0]]
+            yline = [pts_3d[index0, 1], pts_3d[index1, 1]]
+            zline = [pts_3d[index0, 2], pts_3d[index1, 2]]
+            ax.plot(xline, yline, zline, color=colors[j])
+        np.set_printoptions(threshold=1e6, suppress=True)
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    ax.set_zlabel('Z Label')
+    plt.show()
+    # helper.plot_3d_keypoint(P2_opt)
+    # np.savez('q6_1.npz', M=M2_opt, w=P2_opt)
     # img = plt.imread('../data/q6/cam3_time0.jpg')
     # helper.visualize_keypoints(img, pts3, Thres)

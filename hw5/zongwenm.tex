@@ -1,0 +1,283 @@
+\documentclass[11pt]{article} \usepackage{fullpage} \usepackage{graphicx} \usepackage{epstopdf} \usepackage{color} \usepackage{psfrag} \usepackage{pdfsync}\usepackage{indentfirst}\usepackage{subfigure}\usepackage{float}\usepackage[section]{placeins}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{amsfonts, fullpage, graphics} 
+\usepackage{algorithm,algorithmic}
+\usepackage{amsmath,amssymb,amsthm,bm,hyperref}
+\usepackage{dsfont}
+\usepackage[parfill]{parskip}
+\usepackage[margin=1in]{geometry}
+\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\todo}[1]{}
+\renewcommand{\todo}[1]{{\color{red} TODO: {#1}}}
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\newcommand{\obar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\rpm}{\sbox0{$1$}\sbox2{$\scriptstyle\pm$}
+  \raise\dimexpr(\ht0-\ht2)/2\relax\box2 }
+\usepackage{xspace}
+\newcommand{\latex}{\LaTeX\xspace}
+\setlength{\parindent}{2em}
+
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\begin{document}
+
+{\parindent 0pt \begin{tabular}[t]{l} 16-720 Computer Vision \\ Spring 2020 \end{tabular}}%  \hfill XX/XX/14 \vskip 0.2in }
+\parindent 0pt \parskip 8pt
+\begin{center} \large\bf Homework 5 \end{center}
+\begin{center} \large\bf Zongwen Mu, Andrew ID: zongwenm \end{center}
+\bigskip
+
+
+\section{Theory}
+
+\setlength{\parindent}{2em}  
+
+\paragraph{Q1.1}~{}
+
+For each $x_i$ in vector $\bold{x}$, we have:
+\begin{align}
+	softmax\left(x_i\right) & = \frac{\mathrm{e}^{x_i}}{\begin{matrix} \sum_{j} \mathrm{e}^{x_j} \end{matrix}} \\
+	softmax\left(x_i + c\right) & = \frac{\mathrm{e}^{x_i+c}}{\begin{matrix} \sum_{j} \mathrm{e}^{x_j+c} \end{matrix}} \\
+	& = \frac{\mathrm{e}^{x_i}\mathrm{e}^{c}}{\begin{matrix} \sum_{j} \mathrm{e}^{x_j}\mathrm{e}^{c} \end{matrix}}  \\
+	& = \frac{\mathrm{e}^{x_i}}{\begin{matrix} \sum_{j} \mathrm{e}^{x_j} \end{matrix}}
+\end{align}
+
+Therefore, $softmax(x) = softmax(x+c)$.
+
+When $c = -\max{x_i}$, $x+c$ is always equal or less than $0$. This prevents explosion of exponential, so that the result won't overflow.
+
+\paragraph{Q1.2}~{}
+
+The range for each element is $\left(0, 1\right)$, the sum of all elements is $1$;
+
+Softmax takes an arbitrary real valued vector $\bold{x}$ andand turns it into a probability distribution.
+
+Calculating $s_i = \mathrm{e}^{x_i}$ is the outcome frequency in exponential form, $\mathbf{S} = \sum s_i$ calculates the total frequency, and dividing each $s_i$ by $\mathbf{S}$ normalizes the frequency of each $x_i$ and gets the probabilty.
+
+\paragraph{Q1.3}~{}
+
+When passing through fully connect layers, we have:
+\begin{equation}
+	y_i = W_ix_i + b_i
+\end{equation}
+
+Therefore, when applying multi-layer, we have:
+\begin{align}
+	y_n & = W_nx_n + b_n \\
+	& = W_n\left(W_{n-1}x_{n-1} + b_{n-1}\right) + b_n \\
+	& = W_nW_{n-1}x_{n-1} + W_nb_{n-1} + b_n \\
+	& = W^\prime x_{n-1} + b^\prime \\
+	& \cdots \\
+	& = Wx + b
+\end{align}
+
+which is same as linear regression problem.
+
+\paragraph{Q1.4}~{}
+
+Derivative of $\sigma\left(x\right)$:
+\begin{align}
+	\frac{\mathrm{d}}{\mathrm{d}x}\sigma(x) & = \frac{\mathrm{d}}{\mathrm{d}x}\left(1 + \mathrm{e}^{-x}\right)^{-1} \\
+	& = \frac{\mathrm{e}^{-x}}{\left(1+\mathrm{e}^{-x}\right)^{2}} \\
+	& = \frac{1}{1+\mathrm{e}^{-x}}\frac{1+\mathrm{e}^{-x}-1}{1+\mathrm{e}^{-x}} \\
+	& = \sigma(x) \left[1 - \sigma(x)\right]
+\end{align}
+
+\paragraph{Q1.5}~{}
+
+\begin{align}
+	y & = Wx + b \\
+	\frac{\partial J}{\partial W} & = \frac{\partial J}{\partial y}\frac{\partial y}{\partial W} \\
+	& = \delta x^\mathrm{T} \\
+	\frac{\partial J}{\partial x} & = \frac{\partial J}{\partial y}\frac{\partial y}{\partial x} \\
+	& = W^\mathrm{T}\delta \\
+	\frac{\partial J}{\partial b} & = \frac{\partial J}{\partial y}\frac{\partial y}{\partial b} \\
+	& = \delta
+\end{align}
+
+\paragraph{Q1.6}~{}
+
+1. The derivative of sigmoid function is range in $\left(0, 0.25\right)$, which is rather small. Therefore, when applied in multiple layers, it may cause "gradient vanish".
+
+2. The output range of sigmoid function is $\left(0, 1\right)$, while the output range of tanh function is $\left(-1, 1\right)$. Tanh function is preferred because it could reach the negative part when $x$ is negative.
+
+3. The derivative of tanh function has a range of $\left(0, 1\right)$, therefore, the gradient would drop slower and is less likely to cause gradient vanish compared with sigmoid function.
+
+4. 
+\begin{align}
+	\sigma(x) & = \frac{1}{1+\mathrm{e}^{-x}} \\
+	\frac{1-\mathrm{e}^{-x}}{1+\mathrm{e}^{-x}} & = 2\sigma(x) - 1 \\
+	tanh(x) & = \frac{1-\mathrm{e}^{-2x}}{1+\mathrm{e}^{-2x}} \\
+	& = 2\sigma(2x) - 1
+\end{align}
+
+\section{Implement a Fully Connected Network}
+\subsection{Network Initialization}
+
+\paragraph{Q2.1.1}~{}
+
+Since we need to multiply the inputs of each layer by the weights, if the network is initialized with all zeros, the output from the network will all be zero, and the probabilities would all be the same.
+
+\paragraph{Q2.1.3}~{}
+
+Initializing the network with random numbers can avoid getting the same computations from each layer. Scaling the initialization depending on layer size could help keep the variance around desired values when doing forward and backwards propagation.
+
+\section{Training Models}
+
+\paragraph{Q3.1}~{}
+
+With learning rate modified to $4e-3$, batch size set to $32$, after $50$ iterations, the valid accuracy is $75.194\%$. Since the valid loss is quite insignificant compared with training loss, so I averaged training loss by the number of samples, the loss and accuracy figures are shown below:
+\begin{figure}[H]
+\centering
+\subfigure[Loss Figure]{
+\includegraphics[width=0.4\textwidth]{results/q3_1_loss.png}}
+\subfigure[Accuracy Figure]{
+\includegraphics[width=0.4\textwidth]{results/q3_1_acc.png}}
+\caption{Loss and Accuracy Figures}
+\end{figure}
+
+\paragraph{Q3.2}~{}
+With learning rate $4e-2$, the figures are look like:
+\begin{figure}[H]
+\centering
+\subfigure[Loss Figure]{
+\includegraphics[width=0.4\textwidth]{results/q3_2_loss10.png}}
+\subfigure[Accuracy Figure]{
+\includegraphics[width=0.4\textwidth]{results/q3_2_acc10.png}}
+\caption{Loss and Accuracy Figures}
+\end{figure}
+
+The losses are higher and the accuracy dropped, and there is also oscillation occurred.
+
+With learning rate $4e-4$, the figures are look like:
+\begin{figure}[H]
+\centering
+\subfigure[Loss Figure]{
+\includegraphics[width=0.4\textwidth]{results/q3_2_loss01.png}}
+\subfigure[Accuracy Figure]{
+\includegraphics[width=0.4\textwidth]{results/q3_2_acc01.png}}
+\caption{Loss and Accuracy Figures}
+\end{figure}
+
+The curves are smooth but since the step is too small, the network didn't converge to the optimum within the max iteration number $50$.
+
+\paragraph{Q3.3}~{}
+
+The visualization of the initialized first layer weights were shown below:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{results/q3_3_before.png}
+\caption{Initialized Weights}
+\end{figure}
+
+The visualization of learned first layer weights were shown below:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{results/q3_3_after.png}
+\caption{Initialized Weights}
+\end{figure}
+
+Comparing these two figures, we could find that the initialized weights look like random noise since we initialize the weights with random uniform distribution. After training, the learned weights are more clear patterns.
+
+\paragraph{Q3.4}~{}
+
+The visualized confusion matrix is shown below:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{results/q3_4.png}
+\caption{Initialized Weights}
+\end{figure}
+
+From the figure we can tell the most commonly confused pairs are: $`\mathrm{O}`$ and $`0`$, $`\mathrm{s}`$ and $`5`$, which have similar shape that would often be misjudged easily.
+
+\section{Extract Text from Images}
+
+\paragraph{Q4.1}~{}
+
+Choose window size $20$, the matched result is shown below:
+
+
+\paragraph{Q4.2}~{}
+The results for $3D$ visualization is shown below:
+
+
+\section{Image Compression with Autoencoders}
+
+\paragraph{Q5.1}~{}
+
+Using the noisy correspondences, without RANSAC, the visualization of epipolar lines is like:
+
+
+With RANSAC implemented, the result looks much better:
+
+Obtained fundamental matrix $\bold{F}$ is:
+\begin{equation}
+	\bold{F} = \begin{bmatrix} 1.44845968e-08 & -3.12242026e-07 & 1.07078108e-03 \\
+	1.67046292e-07 & 1.00324202e-08 & -8.51505084e-05 \\
+	-1.04288634e-03 & 9.23538949e-05 & -2.07767875e-03
+	\end{bmatrix}
+\end{equation}
+
+For fundamental matrix, we have:
+\begin{equation}
+	\tilde{\bold{x}_2}^T\bold{F}\tilde{\bold{x}_1} = 0
+\end{equation}
+So the error metrics used to determine if point $i$ is an inlier is:
+\begin{equation}
+	err = abs\left(\tilde{\bold{x}_{2i}}^T\bold{F}\tilde{\bold{x}_{1i}}\right)
+\end{equation}
+Set tolerance as $0.8$ and after $100$ iterations, the $\bold{ransacF}$ function was able to find an ideal enough matrix $\bold{F}$.
+
+While tuning the parameters, turning the tolerance to a smaller number would decrease the inlier number, which would cause lower accuracy for RANSAC, and with more iterations, RANSAC would be able to find a better solution.
+
+\paragraph{Q5.3}~{}
+
+The resulting images are shown below:
+
+
+Without bundle adjustment, the reprojection error is $51.484053051875$, while with bundle adjustment the error is $32.15606321697$, which significantly decreased.
+
+\section{PyTorch}
+
+\paragraph{Q6.1}~{}
+
+In this case, I used the triangulate function I've written before to calculate $3$ sets of $\begin{bmatrix} \bold{w} & err \end{bmatrix}$, and compared the errors to decide the one $\bold{w}$ with the smallest error, the chose this $\bold{w}$ as the one used in reconstruction. An example resulting image is shown below:
+%\begin{figure}[H]
+%\centering
+%\subfigure[]{
+%\includegraphics[width=0.3\textwidth]{results/c6_1_1.png}}
+%\subfigure[]{
+%\includegraphics[width=0.3\textwidth]{results/c6_1_2.png}}
+%\subfigure[]{
+%\includegraphics[width=0.3\textwidth]{results/c6_1_3.png}}
+%\subfigure[]{
+%\includegraphics[width=0.3\textwidth]{results/q6_1_1.png}}
+%\subfigure[]{
+%\includegraphics[width=0.3\textwidth]{results/q6_1_2.png}}
+%\subfigure[]{
+%\includegraphics[width=0.3\textwidth]{results/q6_1_3.png}}
+%\caption{Detections and the Reconstructions from Multiple Views}
+%\end{figure}
+
+Tuning the parameter threshold would influence the accuracy in keypoints detection, with lower threshold would lead to more accurate detection and reconstruction. The reconstruction error is $724.8793276$.
+
+\paragraph{Q6.2}~{}
+
+The reconstruction result is shown below:
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.8\textwidth]{results/q6_2.png}
+%\caption{Spatiotemporal Reconstruction}
+%\end{figure}
+
+\end{document}
