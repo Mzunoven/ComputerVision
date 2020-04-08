@@ -136,7 +136,7 @@ Initializing the network with random numbers can avoid getting the same computat
 
 \paragraph{Q3.1}~{}
 
-With learning rate modified to $4e-3$, batch size set to $32$, after $50$ iterations, the valid accuracy is $75.194\%$. Since the valid loss is quite insignificant compared with training loss, so I averaged training loss by the number of samples, the loss and accuracy figures are shown below:
+With learning rate modified to $3e-3$, batch size set to $32$, after $100$ iterations, the valid accuracy is $76.25\%$. Since the valid loss is quite insignificant compared with training loss, so I averaged training loss by the number of samples, the loss and accuracy figures are shown below:
 \begin{figure}[H]
 \centering
 \subfigure[Loss Figure]{
@@ -147,7 +147,7 @@ With learning rate modified to $4e-3$, batch size set to $32$, after $50$ iterat
 \end{figure}
 
 \paragraph{Q3.2}~{}
-With learning rate $4e-2$, the figures are look like:
+With learning rate $3e-2$, the figures are look like:
 \begin{figure}[H]
 \centering
 \subfigure[Loss Figure]{
@@ -159,7 +159,7 @@ With learning rate $4e-2$, the figures are look like:
 
 The losses are higher and the accuracy dropped, and there is also oscillation occurred.
 
-With learning rate $4e-4$, the figures are look like:
+With learning rate $3e-4$, the figures are look like:
 \begin{figure}[H]
 \centering
 \subfigure[Loss Figure]{
@@ -169,7 +169,7 @@ With learning rate $4e-4$, the figures are look like:
 \caption{Loss and Accuracy Figures}
 \end{figure}
 
-The curves are smooth but since the step is too small, the network didn't converge to the optimum within the max iteration number $50$.
+The curves are smooth but since the step is too small, the network didn't converge to the optimum within the max iteration number $100$.
 
 \paragraph{Q3.3}~{}
 
@@ -184,7 +184,7 @@ The visualization of learned first layer weights were shown below:
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{results/q3_3_after.png}
-\caption{Initialized Weights}
+\caption{Trained Weights}
 \end{figure}
 
 Comparing these two figures, we could find that the initialized weights look like random noise since we initialize the weights with random uniform distribution. After training, the learned weights are more clear patterns.
@@ -195,7 +195,7 @@ The visualized confusion matrix is shown below:
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{results/q3_4.png}
-\caption{Initialized Weights}
+\caption{Confusion Matrix}
 \end{figure}
 
 From the figure we can tell the most commonly confused pairs are: $`\mathrm{O}`$ and $`0`$, $`\mathrm{s}`$ and $`5`$, which have similar shape that would often be misjudged easily.
@@ -204,80 +204,147 @@ From the figure we can tell the most commonly confused pairs are: $`\mathrm{O}`$
 
 \paragraph{Q4.1}~{}
 
-Choose window size $20$, the matched result is shown below:
+The assumptions are:
 
+1. Every letter is fully connected.
 
-\paragraph{Q4.2}~{}
-The results for $3D$ visualization is shown below:
+2. Two different letters are not connected.
 
+Since we extract the letters by finding connected pixels, so if parts of the character are separated or there are several connected characters, it may cause error in detection.
+
+Example images:
+\begin{figure}[H]
+\centering
+\subfigure[Letter not fully connected]{
+\includegraphics[width=0.4\textwidth]{results/q4_1_1.png}}
+\subfigure[Connected letters]{
+\includegraphics[width=0.4\textwidth]{results/q4_1_2.png}}
+\caption{Examples of Possible Detection Failure}
+\end{figure}
+
+\paragraph{Q4.3}~{}
+
+All letters were detected correctly, results are shown below:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q4_3_1.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q4_3_2.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q4_3_3.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q4_3_4.png}}
+\caption{Detection Results}
+\end{figure}
 
 \section{Image Compression with Autoencoders}
 
-\paragraph{Q5.1}~{}
+\setcounter{subsection}{1}
+\subsection{Training the Autoencoder}
+\paragraph{Q5.2}~{}
 
-Using the noisy correspondences, without RANSAC, the visualization of epipolar lines is like:
+With default settings and batch size $36$, learning rate $3e-5$, the loss curves are shown below:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{results/q5_2_loss.png}
+\caption{Loss Figure}
+\end{figure}
 
+As training epochs increase, the loss dropped in a vibrating way, but it became smoother at the end of training.
 
-With RANSAC implemented, the result looks much better:
+\subsection{Evaluating the Autoencoder}
+\paragraph{Q5.3.1}~{}
 
-Obtained fundamental matrix $\bold{F}$ is:
-\begin{equation}
-	\bold{F} = \begin{bmatrix} 1.44845968e-08 & -3.12242026e-07 & 1.07078108e-03 \\
-	1.67046292e-07 & 1.00324202e-08 & -8.51505084e-05 \\
-	-1.04288634e-03 & 9.23538949e-05 & -2.07767875e-03
-	\end{bmatrix}
-\end{equation}
+Class $2$:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_21.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_22.png}}
+\caption{Class 2}
+\end{figure}
 
-For fundamental matrix, we have:
-\begin{equation}
-	\tilde{\bold{x}_2}^T\bold{F}\tilde{\bold{x}_1} = 0
-\end{equation}
-So the error metrics used to determine if point $i$ is an inlier is:
-\begin{equation}
-	err = abs\left(\tilde{\bold{x}_{2i}}^T\bold{F}\tilde{\bold{x}_{1i}}\right)
-\end{equation}
-Set tolerance as $0.8$ and after $100$ iterations, the $\bold{ransacF}$ function was able to find an ideal enough matrix $\bold{F}$.
+Class $\mathrm{A}$:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_a1.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_a2.png}}
+\caption{Class A}
+\end{figure}
 
-While tuning the parameters, turning the tolerance to a smaller number would decrease the inlier number, which would cause lower accuracy for RANSAC, and with more iterations, RANSAC would be able to find a better solution.
+Class $\mathrm{H}$:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_h1.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_h2.png}}
+\caption{Class H}
+\end{figure}
 
-\paragraph{Q5.3}~{}
+Class $\mathrm{O}$:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_o1.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_o2.png}}
+\caption{Class O}
+\end{figure}
 
-The resulting images are shown below:
+Class $\mathrm{V}$:
+\begin{figure}[H]
+\centering
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_v1.png}}
+\subfigure[]{
+\includegraphics[width=0.4\textwidth]{results/q5_3_v2.png}}
+\caption{Class V}
+\end{figure}
 
+We could approximately tell the shapes of reconstructed figures are quite similar to the original ones, but autoencoder is unable to fully reconstruct the figure, so the reconstructed figures are blurred.
 
-Without bundle adjustment, the reprojection error is $51.484053051875$, while with bundle adjustment the error is $32.15606321697$, which significantly decreased.
+\paragraph{Q5.3.2}~{}
+
+With default settings and batch size $36$, learning rate $3e-5$, the $\mathrm{PSNR}$ is $13.52373364094888$.
 
 \section{PyTorch}
+\subsection{Train a Neural Network in PyTorch}
+\paragraph{Q6.1.1}~{}
 
-\paragraph{Q6.1}~{}
+\begin{figure}[H]
+\centering
+\subfigure[Loss Figure]{
+\includegraphics[width=0.4\textwidth]{results/q6_1_1loss.png}}
+\subfigure[Accuracy Figure]{
+\includegraphics[width=0.4\textwidth]{results/q6_1_1acc.png}}
+\caption{Loss and Accuracy Figures}
+\end{figure}
 
-In this case, I used the triangulate function I've written before to calculate $3$ sets of $\begin{bmatrix} \bold{w} & err \end{bmatrix}$, and compared the errors to decide the one $\bold{w}$ with the smallest error, the chose this $\bold{w}$ as the one used in reconstruction. An example resulting image is shown below:
-%\begin{figure}[H]
-%\centering
-%\subfigure[]{
-%\includegraphics[width=0.3\textwidth]{results/c6_1_1.png}}
-%\subfigure[]{
-%\includegraphics[width=0.3\textwidth]{results/c6_1_2.png}}
-%\subfigure[]{
-%\includegraphics[width=0.3\textwidth]{results/c6_1_3.png}}
-%\subfigure[]{
-%\includegraphics[width=0.3\textwidth]{results/q6_1_1.png}}
-%\subfigure[]{
-%\includegraphics[width=0.3\textwidth]{results/q6_1_2.png}}
-%\subfigure[]{
-%\includegraphics[width=0.3\textwidth]{results/q6_1_3.png}}
-%\caption{Detections and the Reconstructions from Multiple Views}
-%\end{figure}
 
-Tuning the parameter threshold would influence the accuracy in keypoints detection, with lower threshold would lead to more accurate detection and reconstruction. The reconstruction error is $724.8793276$.
+\paragraph{Q6.1.2}~{}
 
-\paragraph{Q6.2}~{}
+The structure of convolutional network is:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{results/q6_1_2.png}
+\caption{Network Structure}
+\end{figure}
+and the results are shown below:
 
-The reconstruction result is shown below:
-%\begin{figure}[H]
-%\centering
-%\includegraphics[width=0.8\textwidth]{results/q6_2.png}
-%\caption{Spatiotemporal Reconstruction}
-%\end{figure}
+\begin{figure}[H]
+\centering
+\subfigure[Loss Figure]{
+\includegraphics[width=0.4\textwidth]{results/q6_1_2loss.png}}
+\subfigure[Accuracy Figure]{
+\includegraphics[width=0.4\textwidth]{results/q6_1_2acc.png}}
+\caption{Loss and Accuracy Figures}
+\end{figure}
+
+Compared with the fully-connected network, the convolutional network converged faster and reached a significantly higher accuracy, and the loss in convolutional network dropped sharply at the first two iterations.
 
 \end{document}

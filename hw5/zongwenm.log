@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.4)  5 APR 2020 21:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.4)  7 APR 2020 14:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -550,72 +550,199 @@ Non-PDF special ignored!
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2]
-<results/q3_1_loss.png, id=79, 462.528pt x 346.896pt>
+<results/q3_1_loss.png, id=91, 462.528pt x 346.896pt>
 File: results/q3_1_loss.png Graphic file (type png)
 <use results/q3_1_loss.png>
 Package pdftex.def Info: results/q3_1_loss.png  used on input line 143.
 (pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-<results/q3_1_acc.png, id=81, 462.528pt x 346.896pt>
+<results/q3_1_acc.png, id=93, 462.528pt x 346.896pt>
 File: results/q3_1_acc.png Graphic file (type png)
 <use results/q3_1_acc.png>
 Package pdftex.def Info: results/q3_1_acc.png  used on input line 145.
 (pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-<results/q3_2_loss10.png, id=82, 462.528pt x 346.896pt>
+<results/q3_2_loss10.png, id=94, 462.528pt x 346.896pt>
 File: results/q3_2_loss10.png Graphic file (type png)
 <use results/q3_2_loss10.png>
 Package pdftex.def Info: results/q3_2_loss10.png  used on input line 154.
 (pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-<results/q3_2_acc10.png, id=83, 462.528pt x 346.896pt>
+<results/q3_2_acc10.png, id=95, 462.528pt x 346.896pt>
 File: results/q3_2_acc10.png Graphic file (type png)
 <use results/q3_2_acc10.png>
 Package pdftex.def Info: results/q3_2_acc10.png  used on input line 156.
 (pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
  [3 <./results/q3_1_loss.png> <./results/q3_1_acc.png>]
-<results/q3_2_loss01.png, id=101, 462.528pt x 346.896pt>
+<results/q3_2_loss01.png, id=113, 462.528pt x 346.896pt>
 File: results/q3_2_loss01.png Graphic file (type png)
 <use results/q3_2_loss01.png>
 Package pdftex.def Info: results/q3_2_loss01.png  used on input line 166.
 (pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-<results/q3_2_acc01.png, id=102, 462.528pt x 346.896pt>
+<results/q3_2_acc01.png, id=114, 462.528pt x 346.896pt>
 File: results/q3_2_acc01.png Graphic file (type png)
 <use results/q3_2_acc01.png>
 Package pdftex.def Info: results/q3_2_acc01.png  used on input line 168.
 (pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-<results/q3_3_before.png, id=103, 462.528pt x 346.896pt>
+<results/q3_3_before.png, id=115, 462.528pt x 346.896pt>
 File: results/q3_3_before.png Graphic file (type png)
 <use results/q3_3_before.png>
 Package pdftex.def Info: results/q3_3_before.png  used on input line 179.
 (pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
  [4 <./results/q3_2_loss10.png> <./results/q3_2_acc10.png> <./results/q3_2_loss
 01.png> <./results/q3_2_acc01.png>]
-<results/q3_3_after.png, id=120, 462.528pt x 346.896pt>
+<results/q3_3_after.png, id=132, 462.528pt x 346.896pt>
 File: results/q3_3_after.png Graphic file (type png)
 <use results/q3_3_after.png>
 Package pdftex.def Info: results/q3_3_after.png  used on input line 186.
 (pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
  [5 <./results/q3_3_before.png> <./results/q3_3_after.png>]
-<results/q3_4.png, id=129, 462.528pt x 346.896pt>
+<results/q3_4.png, id=141, 462.528pt x 346.896pt>
 File: results/q3_4.png Graphic file (type png)
 <use results/q3_4.png>
 Package pdftex.def Info: results/q3_4.png  used on input line 197.
 (pdftex.def)             Requested size: 375.80544pt x 281.86818pt.
+<results/q4_1_1.png, id=142, 400.49625pt x 171.64125pt>
+File: results/q4_1_1.png Graphic file (type png)
+<use results/q4_1_1.png>
+Package pdftex.def Info: results/q4_1_1.png  used on input line 219.
+(pdftex.def)             Requested size: 187.89914pt x 80.52995pt.
+<results/q4_1_2.png, id=143, 338.26375pt x 261.97874pt>
+File: results/q4_1_2.png Graphic file (type png)
+<use results/q4_1_2.png>
+Package pdftex.def Info: results/q4_1_2.png  used on input line 221.
+(pdftex.def)             Requested size: 187.89914pt x 145.52783pt.
 
 [6 <./results/q3_4.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 283.
- [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 283.
+<results/q4_3_1.png, id=152, 462.528pt x 346.896pt>
+File: results/q4_3_1.png Graphic file (type png)
+<use results/q4_3_1.png>
+Package pdftex.def Info: results/q4_3_1.png  used on input line 231.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q4_3_2.png, id=153, 462.528pt x 346.896pt>
+File: results/q4_3_2.png Graphic file (type png)
+<use results/q4_3_2.png>
+Package pdftex.def Info: results/q4_3_2.png  used on input line 233.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q4_3_3.png, id=154, 462.528pt x 346.896pt>
+File: results/q4_3_3.png Graphic file (type png)
+<use results/q4_3_3.png>
+Package pdftex.def Info: results/q4_3_3.png  used on input line 235.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q4_3_4.png, id=155, 462.528pt x 346.896pt>
+File: results/q4_3_4.png Graphic file (type png)
+<use results/q4_3_4.png>
+Package pdftex.def Info: results/q4_3_4.png  used on input line 237.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+ [7 <./results/q4_1_1.png> <./results/q4_1_2.png> <./results/q4_3_1.png> <./res
+ults/q4_3_2.png> <./results/q4_3_3.png> <./results/q4_3_4.png>]
+<results/q5_2_loss.png, id=177, 462.528pt x 346.896pt>
+File: results/q5_2_loss.png Graphic file (type png)
+<use results/q5_2_loss.png>
+Package pdftex.def Info: results/q5_2_loss.png  used on input line 250.
+(pdftex.def)             Requested size: 375.80544pt x 281.86818pt.
+<results/q5_3_21.png, id=178, 462.528pt x 346.896pt>
+File: results/q5_3_21.png Graphic file (type png)
+<use results/q5_3_21.png>
+Package pdftex.def Info: results/q5_3_21.png  used on input line 263.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q5_3_22.png, id=179, 462.528pt x 346.896pt>
+File: results/q5_3_22.png Graphic file (type png)
+<use results/q5_3_22.png>
+Package pdftex.def Info: results/q5_3_22.png  used on input line 265.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+ [8 <./results/q5_2_loss.png>]
+<results/q5_3_a1.png, id=188, 462.528pt x 346.896pt>
+File: results/q5_3_a1.png Graphic file (type png)
+<use results/q5_3_a1.png>
+Package pdftex.def Info: results/q5_3_a1.png  used on input line 273.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q5_3_a2.png, id=189, 462.528pt x 346.896pt>
+File: results/q5_3_a2.png Graphic file (type png)
+<use results/q5_3_a2.png>
+Package pdftex.def Info: results/q5_3_a2.png  used on input line 275.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q5_3_h1.png, id=190, 462.528pt x 346.896pt>
+File: results/q5_3_h1.png Graphic file (type png)
+<use results/q5_3_h1.png>
+Package pdftex.def Info: results/q5_3_h1.png  used on input line 283.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q5_3_h2.png, id=191, 462.528pt x 346.896pt>
+File: results/q5_3_h2.png Graphic file (type png)
+<use results/q5_3_h2.png>
+Package pdftex.def Info: results/q5_3_h2.png  used on input line 285.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q5_3_o1.png, id=192, 462.528pt x 346.896pt>
+File: results/q5_3_o1.png Graphic file (type png)
+<use results/q5_3_o1.png>
+Package pdftex.def Info: results/q5_3_o1.png  used on input line 293.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q5_3_o2.png, id=193, 462.528pt x 346.896pt>
+File: results/q5_3_o2.png Graphic file (type png)
+<use results/q5_3_o2.png>
+Package pdftex.def Info: results/q5_3_o2.png  used on input line 295.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+ [9 <./results/q5_3_21.png> <./results/q5_3_22.png> <./results/q5_3_a1.png> <./
+results/q5_3_a2.png> <./results/q5_3_h1.png> <./results/q5_3_h2.png>]
+<results/q5_3_v1.png, id=213, 462.528pt x 346.896pt>
+File: results/q5_3_v1.png Graphic file (type png)
+<use results/q5_3_v1.png>
+Package pdftex.def Info: results/q5_3_v1.png  used on input line 303.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q5_3_v2.png, id=214, 462.528pt x 346.896pt>
+File: results/q5_3_v2.png Graphic file (type png)
+<use results/q5_3_v2.png>
+Package pdftex.def Info: results/q5_3_v2.png  used on input line 305.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+
+Overfull \hbox (14.78084pt too wide) in paragraph at lines 313--314
+[][][]\OT1/cmr/m/n/10.95 With de-fault set-tings and batch size $[][]36$, learn
+-ing rate $[][]3\OML/cmm/m/it/10.95 e \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.9
+5 5$, the $[][][]$ is $[][]13\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 5237336409
+4888$. 
+ []
+
+<results/q6_1_1loss.png, id=215, 462.528pt x 346.896pt>
+File: results/q6_1_1loss.png Graphic file (type png)
+<use results/q6_1_1loss.png>
+Package pdftex.def Info: results/q6_1_1loss.png  used on input line 322.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q6_1_1acc.png, id=216, 462.528pt x 346.896pt>
+File: results/q6_1_1acc.png Graphic file (type png)
+<use results/q6_1_1acc.png>
+Package pdftex.def Info: results/q6_1_1acc.png  used on input line 324.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+[10 <./results/q5_3_o1.png> <./results/q5_3_o2.png> <./results/q5_3_v1.png> <./
+results/q5_3_v2.png>]
+<results/q6_1_2.png, id=233, 348.30125pt x 439.6425pt>
+File: results/q6_1_2.png Graphic file (type png)
+<use results/q6_1_2.png>
+Package pdftex.def Info: results/q6_1_2.png  used on input line 334.
+(pdftex.def)             Requested size: 234.8775pt x 296.47083pt.
+<results/q6_1_2loss.png, id=234, 462.528pt x 346.896pt>
+File: results/q6_1_2loss.png Graphic file (type png)
+<use results/q6_1_2loss.png>
+Package pdftex.def Info: results/q6_1_2loss.png  used on input line 342.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<results/q6_1_2acc.png, id=235, 462.528pt x 346.896pt>
+File: results/q6_1_2acc.png Graphic file (type png)
+<use results/q6_1_2acc.png>
+Package pdftex.def Info: results/q6_1_2acc.png  used on input line 344.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+ [11 <./results/q6_1_1loss.png> <./results/q6_1_1acc.png> <./results/q6_1_2.png
+>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 350.
+ [12 <./results/q6_1_2loss.png> <./results/q6_1_2acc.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 350.
  (./zongwenm.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 283.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 283.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 350.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 350.
 Package rerunfilecheck Info: File `zongwenm.out' has not changed.
-(rerunfilecheck)             Checksum: 33D302C5C8F291E1302C4AF18949BA2C;403.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 283.
+(rerunfilecheck)             Checksum: 16B5CBBEF12FAFCCC0F55AFE808EC7A7;634.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 350.
  ) 
 Here is how much of TeX's memory you used:
- 8986 strings out of 492616
- 129493 string characters out of 6129482
- 238538 words of memory out of 5000000
- 12657 multiletter control sequences out of 15000+600000
+ 9136 strings out of 492616
+ 132315 string characters out of 6129482
+ 238544 words of memory out of 5000000
+ 12748 multiletter control sequences out of 15000+600000
  12567 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,22n,32p,944b,424s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -630,10 +757,10 @@ cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
 /texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/te
 xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
 live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on zongwenm.pdf (7 pages, 818084 bytes).
+Output written on zongwenm.pdf (12 pages, 1497741 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 167 compressed objects within 2 object streams
- 74 named destinations out of 1000 (max. 500000)
- 102 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 320 PDF objects out of 1000 (max. 8388607)
+ 230 compressed objects within 3 object streams
+ 111 named destinations out of 1000 (max. 500000)
+ 236 words of extra memory for PDF output out of 10000 (max. 10000000)
 

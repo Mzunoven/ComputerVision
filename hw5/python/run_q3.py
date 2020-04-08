@@ -12,10 +12,10 @@ valid_data = scipy.io.loadmat('../data/nist36_valid.mat')
 train_x, train_y = train_data['train_data'], train_data['train_labels']
 valid_x, valid_y = valid_data['valid_data'], valid_data['valid_labels']
 
-max_iters = 50
+max_iters = 100
 # pick a batch size, learning rate
 batch_size = 32
-learning_rate = 4e-3
+learning_rate = 3e-3
 hidden_size = 64
 ##########################
 ##### your code here #####
@@ -144,10 +144,10 @@ for i in range(examples):
     confusion_matrix[x_idx, y_idx] += 1
 
 
-plt.imshow(confusion_matrix, interpolation='nearest')
-plt.grid(True)
-plt.xticks(np.arange(36),
-           string.ascii_uppercase[:26] + ''.join([str(_) for _ in range(10)]))
-plt.yticks(np.arange(36),
-           string.ascii_uppercase[:26] + ''.join([str(_) for _ in range(10)]))
-plt.show()
+# plt.imshow(confusion_matrix, interpolation='nearest')
+# plt.grid(True)
+# plt.xticks(np.arange(36),
+#            string.ascii_uppercase[:26] + ''.join([str(_) for _ in range(10)]))
+# plt.yticks(np.arange(36),
+#            string.ascii_uppercase[:26] + ''.join([str(_) for _ in range(10)]))
+# plt.show()
