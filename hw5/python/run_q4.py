@@ -27,7 +27,7 @@ for img in os.listdir('../images'):
     print('\n')
     print(img)
 
-    # plt.imshow(1-bw, cmap='gray')
+    # plt.imshow(bw, cmap='gray')
     # for bbox in bboxes:
     #     minr, minc, maxr, maxc = bbox
     #     rect = matplotlib.patches.Rectangle((minc, minr), maxc - minc, maxr - minr,
@@ -84,26 +84,29 @@ for img in os.listdir('../images'):
             r = maxc
 
             letter = bw[minr:maxr, minc:maxc]
-            # hei, wid = letter.shape
             # print(letter.shape)
 
-            if (img == '01_list.jpg'):
-                letter = np.pad(letter, ((20, 20), (20, 20)),
-                                'constant', constant_values=0.0)
-                letter = skimage.transform.resize(letter, (32, 32))
-                letter = skimage.morphology.dilation(
-                    letter, skimage.morphology.square(1))
-            else:
-                letter = np.pad(letter, ((50, 50), (50, 50)),
-                                'constant', constant_values=0.0)
-                letter = skimage.transform.resize(letter, (32, 32))
-                letter = skimage.morphology.dilation(
-                    letter, skimage.morphology.square(2))
-            letter = 1.0 - letter
+            # if (img == '01_list.jpg'):
+            #     letter = np.pad(letter, ((20, 20), (20, 20)),
+            #                     'constant', constant_values=0.0)
+            #     letter = skimage.transform.resize(letter, (32, 32))
+            #     letter = skimage.morphology.dilation(
+            #         letter, skimage.morphology.square(1))
+            # else:
+            #     letter = np.pad(letter, ((50, 50), (50, 50)),
+            #                     'constant', constant_values=0.0)
+            #     letter = skimage.transform.resize(letter, (32, 32))
+            #     letter = skimage.morphology.dilation(
+            #         letter, skimage.morphology.square(2))
+            # letter = np.pad(letter, ((50, 50), (50, 50)),
+            #                 'constant', constant_values=0.0)
+            letter = np.pad(letter, (30, 30), 'constant',
+                            constant_values=(1, 1))
+            letter = skimage.transform.resize(letter, (32, 32))
+            letter = letter.T
             # plt.imshow(letter)
             # plt.show()
-            letter = letter.T
-            print(letter)
+            # print(letter)
 
             x = letter.reshape(1, 32*32)
             h = forward(x, params, 'layer1')

@@ -37,4 +37,6 @@ def findLetters(image):
         if i.area >= 200:
             bboxes.append(i.bbox)
 
+    bw = 1.0 - bw
+
     return bboxes, bw
