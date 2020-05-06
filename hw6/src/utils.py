@@ -8,8 +8,8 @@ import numpy as np
 import warnings
 from scipy.ndimage import gaussian_filter
 
-def integrateFrankot(zx, zy, pad = 512):
 
+def integrateFrankot(zx, zy, pad=512):
     """
     Question 1 (j)
 
@@ -68,8 +68,7 @@ def integrateFrankot(zx, zy, pad = 512):
     return z
 
 
-def enforceIntegrability(N, s, sig = 3):
-        
+def enforceIntegrability(N, s, sig=3):
     """
     Question 2 (e)
 
@@ -94,9 +93,9 @@ def enforceIntegrability(N, s, sig = 3):
     N2 = N[1, :].reshape(s)
     N3 = N[2, :].reshape(s)
 
-    N1y, N1x = np.gradient(gaussian_filter(N1, sig), edge_order = 2)
-    N2y, N2x = np.gradient(gaussian_filter(N2, sig), edge_order = 2)
-    N3y, N3x = np.gradient(gaussian_filter(N3, sig), edge_order = 2)
+    N1y, N1x = np.gradient(gaussian_filter(N1, sig), edge_order=2)
+    N2y, N2x = np.gradient(gaussian_filter(N2, sig), edge_order=2)
+    N3y, N3x = np.gradient(gaussian_filter(N3, sig), edge_order=2)
 
     A1 = N1*N2x-N2*N1x
     A2 = N1*N3x-N3*N1x
@@ -117,8 +116,9 @@ def enforceIntegrability(N, s, sig = 3):
     h = V[:, np.argmin(np.abs(W))]
 
     delta = np.asarray([[-h[2],  h[5], 1],
-                        [ h[1], -h[4], 0],
+                        [h[1], -h[4], 0],
                         [-h[0],  h[3], 0]])
     Nt = np.linalg.inv(delta).dot(N)
+    # print(delta)
 
     return Nt
